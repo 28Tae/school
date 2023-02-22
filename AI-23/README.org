@@ -2,7 +2,6 @@
 
 - always experiment. \\
 - use /comments/ ~#~ on code, to explain things. \\
-- this material is split into ~concepts~ and ~common mistakes~.
 
 -----
 
@@ -10,7 +9,7 @@
 #+begin_src python
 def ultrasound(i):
     return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
-    # to call, ultrasound(1) or any other number
+    # to call: ultrasound(2)
 
 def turn_right():
     go(100, -100, 0.65)
@@ -25,11 +24,11 @@ def turn_left():
 ** Movement
 
 1. ~go(left, right, time)~
-  - *REDUCE POWER / TIME in loops* /[slower]/ to be ACCURATE
+  - *REDUCE POWER / TIME* /[slower]/ to be *ACCURATE* [works in loops]
 2. ~angle()~
 + ~range(5)~ -- returns ~5~ numbers /[0,1,2,3,4]/
 + ~for i in range(5)~ -- repeats for *fixed #* of times
-+ ~while A~ -- repeats while a *condition* is met
++ ~while A~ -- repeats /while/ A is True, or /until/ A is False
 
 ** Sensors
 *** > ultrasound
@@ -77,35 +76,21 @@ if i == 0:  # note the ==
     print('hello, world!')
 #+end_src
 
-** Indentation
-#+begin_quote
-Be systematic. Code of the same indent means 'the same layer'. \\
-/The below code has =2= indent issues. Can you find them?/
-#+end_quote
-#+begin_src python
-while precise_results(2) < 130:
-print('hello')
-    go(0,0,1)
-    ...
-    print(angle())
-        go(2,2,0.5)
-#+end_src
-
 ** Obsolete/Dysfunctional Loops
 #+begin_quote
-to be *efficient*, remove/replace unnecessary loops.
+Effectively remove/replace unnecessary loops.
 #+end_quote
 #+begin_src python
 counter = 0
 while counter < 3:
     counter += 1
 
-"is literally..."
+# is literally the SAME as
 
 counter = 3
 #+end_src python
 #+begin_quote
-very commonly, an obsolete/inefficient =for= loop in a =while=...
+More commonly, an obsolete/inefficient =for= loop in a =while=...
 #+end_quote
 #+begin_src python
 while angle() < 50:
@@ -117,5 +102,5 @@ while angle() < 50:
 -----
 \\
 #+begin_src python
-raise NameError('THIS MATERIAL IS NOT COMPLETE...!')
+raise NameError('this MARKDOWN is NOT COMPLETE...! hang on tight!')
 #+end_src
