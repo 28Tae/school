@@ -20,28 +20,34 @@ def turn_left():
     go(-10, 10, 0.3)
 #+end_src
 
-* Concepts
+-----
+
+* ˚ʚ Concepts ɞ˚
 ** Movement
-
-1. ~go(left, right, time)~
-  - *REDUCE POWER / TIME* /[slower]/ to be *ACCURATE* [works in loops]
-2. ~angle()~
-+ ~range(5)~ -- returns ~5~ numbers /[0,1,2,3,4]/
-+ ~for i in range(5)~ -- repeats for *fixed #* of times
-+ ~while A~ -- repeats /while/ A is True, or /until/ A is False
-
-** Sensors
-*** > ultrasound
-- ~[0]~ frontleft | ~[1]~ frontright | ~[2]~ front | ~[3]~ back
-  - /SMALLER reading → CLOSER dist/
-- get *average* of 3 readings → reduce error
 #+begin_quote
-*DISTANCE = START - END* ← ~[2]~ \\
-*DISTANCE = END - START* ← ~[3]~
+*REDUCE POWER / TIME* /[be slower]/ in a loop for ACCURACY
+#+end_quote
+- ~go(left, right, time)~
+- ~set(x, y, angle)~
+- ~angle()~
+
+** Loops
+
+- ~range(start,stop,step)~ -- runs a num sequence with interval, excluding ~stop~
+- ~for i in range(5):~ -- repeats for *fixed #* of times (ie ~5~ times)
+- ~while A:~ -- repeats /while/ A is True, or /until/ A is False
+
+** Ultrasound Sensor
+- =get_ultrasound()[sensor]= - includes /some random/ error
+- SMALLER value → CLOSER dist
+- get *AVERAGE* of 3 readings → reduce error
+#+begin_quote
+*DIST_{moved} = START - END* ~[2]~ \\
+*DIST_{moved} = END - START* ~[3]~
 #+end_quote
 [[https://imgur.com/C3RRSEBl.jpg]]
 
-*** > color
+** Color Sensor
 #+begin_quote
 ~[0]~ ~[1]~ left | ~[2]~ ~[3]~ right \\
 all values run from =0= *(dark)* to =255= *(bright)* -- =128= as threshold
@@ -51,7 +57,7 @@ all values run from =0= *(dark)* to =255= *(bright)* -- =128= as threshold
 
 -----
 
-* ~!~ Common Mistakes
+* ˚ʚ Common Mistakes ɞ˚
 ** Improper Syntax
 #+begin_quote
 Any =loop= and =condition= MUST have a =:=. \\
