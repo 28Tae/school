@@ -1,7 +1,7 @@
 #+title: IF AI Markdown
 
 - always experiment. \\
-- use /comments/ ~#~ on code, to explain things. \\
+- use /comments/ ~#~ to explain your code. \\
 
 -----
 
@@ -9,7 +9,6 @@
 #+begin_src python
 def ultrasound(i):
     return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
-    # to call: ultrasound(2)
 
 def turn_right():
     go(100, -100, 0.65)
@@ -33,24 +32,27 @@ def turn_left():
 
 ** Loops
 
-- ~range(start,stop,step)~ -- runs a num sequence with interval, excluding ~stop~
-- ~for i in range(5):~ -- repeats for *fixed #* of times (ie ~5~ times)
+- ~range(start,stop,step)~ -- a num sequence, excludes ~stop~
+- ~for i in range(5):~ -- repeats 5 times *(fixed #)*
 - ~while A:~ -- repeats /while/ A is True, or /until/ A is False
 
 ** Ultrasound Sensor
-- =get_ultrasound()[sensor]= - includes /some random/ error
-- SMALLER value → CLOSER dist
-- get *AVERAGE* of 3 readings → reduce error
+- =get_ultrasound()[sensor]= -- includes /some random/ error
+- SMALLER value ⇌ CLOSER dist
+- use *AVERAGE* of =3= readings -- reduce error
 #+begin_quote
-*DIST_{moved} = START - END* ~[2]~ \\
-*DIST_{moved} = END - START* ~[3]~
+*DIST_{moved} = START - END* ^{~2~} \\
+*DIST_{moved} = END - START* ^{~3~}
 #+end_quote
 [[https://imgur.com/C3RRSEBl.jpg]]
 
 ** Color Sensor
 #+begin_quote
-~[0]~ ~[1]~ left | ~[2]~ ~[3]~ right \\
-all values run from =0= *(dark)* to =255= *(bright)* -- =128= as threshold
+/sensors/ -- ~0 - 3~ *(left to right)*
+#+end_quote
+#+begin_quote
+value range -- ~0 - 255~ *(dark to bright)*\\
+threshold -- ~128~
 #+end_quote
 + =get_color()[i][rgb]= - [0] red [1] green [2] blue
 + =get_intensity()[i]= - /brightness/ / ave RGB reading
