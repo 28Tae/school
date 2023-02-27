@@ -1,7 +1,10 @@
-#+title: IF AI Markdown
+#+title: IF AI'23 /ASAP Markdown/
+****** V0.2.2, /last updated 27/02/23/
 
-- always experiment. \\
-- use /comments/ ~#~ to explain your code. \\
+- use /comments/ ~#~ to help *explain* your code
+- outline of this markdown --
+    - ~concepts~
+    - ~common mistakes~
 
 -----
 
@@ -72,7 +75,7 @@ for i in range(5):      # note the :
         ultra2 = get_ultrasound()[0]    # see the difference
 #+end_src
 
-** = OR ==
+** ~=~ OR ~==~
 #+begin_quote
 ~=~ assigns a variable BUT \\
 ~==~ compares 2 variables
