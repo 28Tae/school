@@ -1,5 +1,5 @@
 #+title: IF AI'23 /ASAP Markdown/
-****** V0.2.2, /last updated 27/02/23/
+****** V0.2.3, /last updated 27/02/23/
 
 - use /comments/ ~#~ to help *explain* your code
 - outline of this markdown --
@@ -49,16 +49,17 @@ def turn_left():
 #+end_quote
 [[https://imgur.com/C3RRSEBl.jpg]]
 
+
 ** Color Sensor
 #+begin_quote
-/sensors/ -- ~0 - 3~ *(left to right)*
+sensors -- ~0 - 3~ (left to right)
 #+end_quote
 #+begin_quote
 value range -- ~0 - 255~ *(dark to bright)*\\
 threshold -- ~128~
 #+end_quote
-+ =get_color()[i][rgb]= - [0] red [1] green [2] blue
-+ =get_intensity()[i]= - /brightness/ / ave RGB reading
++ =get_color()[sensor][rgb]= -- /rgb:/ red_{~0~}, green_{~1~}, blue_{~2~}
++ =get_intensity()[sensor]= -- /brightness/ / ave RGB reading
 
 -----
 
@@ -77,19 +78,17 @@ for i in range(5):      # note the :
 
 ** ~=~ OR ~==~
 #+begin_quote
-~=~ assigns a variable BUT \\
-~==~ compares 2 variables
+~=~ *assigns* a variable \\
+~==~ *compares* whether 2 variables are equal
 #+end_quote
 #+begin_src python
-i = 0       # note the =
-...
-if i == 0:  # note the ==
-    print('hello, world!')
+i = 0          # note the =
+print(i == 0)  # note the ==
 #+end_src
 
 ** Obsolete/Dysfunctional Loops
 #+begin_quote
-Effectively remove/replace unnecessary loops.
+Just rewrite/remove unnecessary loops.
 #+end_quote
 #+begin_src python
 counter = 0
