@@ -1,5 +1,5 @@
-#+title: IF AI'23 /ASAP Markdown/
-****** V0.2.3, /last updated 27/02/23/
+#+title: IF AI'23 /Notes/
+****** V0.3, /last updated 05/02/23/
 
 - use /comments/ ~#~ to help *explain* your code
 - outline of this markdown --
@@ -86,31 +86,52 @@ i = 0          # note the =
 print(i == 0)  # note the ==
 #+end_src
 
-** Obsolete/Dysfunctional Loops
+** Dysfunctional Loops
 #+begin_quote
-Just rewrite/remove unnecessary loops.
-#+end_quote
-#+begin_src python
-counter = 0
-while counter < 3:
-    counter += 1
-
-# is literally the SAME as
-
-counter = 3
-#+end_src python
-#+begin_quote
-More commonly, an obsolete/inefficient =for= loop in a =while=...
+/Rewrite/remove unnecessary loops./ \\
+An obsolete =for= or a =while= loop in a =while= can *needlessly hinder* your program.
 #+end_quote
 #+begin_src python
 while angle() < 50:
-    for i in range(8):  # this for loop hinders your while loop, so just remove it.
+    for i in range(8):  # just remove this
         ...
 ...
-#+end_src python
-\\
------
-\\
-#+begin_src python
-raise NameError('this MARKDOWN is NOT COMPLETE...! hang on tight!')
 #+end_src
+
+** Classical Boolean Problem
+#+begin_src python
+def eval_not_numeric():
+    if is_data_numeric == True:
+        return False
+    else:
+        return True
+#+end_src
+#+begin_quote
+The above is unnecessarily *inefficient*. /Do this instead:/
+#+end_quote
+#+begin_src python
+def eval_not_numeric():
+    return not is_data_numeric
+    # not True -> False
+    # not False -> True
+#+end_src python
+
+** Doing Something to Do Nothing
+#+begin_src python
+if x == 10:
+    score += 10
+else:
+    score += 0   # doing something that does nothing
+#+end_src
+#+begin_quote
+It's pointless. Consider removing the ~else~ branch. \\
+Or, use ~pass~, a command that /actually/ does nothing.
+#+end_quote
+#+begin_src python
+if x == 10:
+    score += 10
+else:
+    pass
+#+end_src
+
+-----
