@@ -1,10 +1,7 @@
-#+title: IF AI'23 /Notes/
-****** V0.3, /last updated 05/02/23/
-
-- use /comments/ ~#~ to help *explain* your code
-- outline of this markdown --
-    - ~concepts~
-    - ~common mistakes~
+#+title: IF AI'23 Module Notes
+****** [[https://youtu.be/wpV-gGA4PSk][V0.4, last updated 22/03/23]]
+- ~concepts~
+- ~common mistakes~
 
 -----
 
@@ -116,22 +113,28 @@ def eval_not_numeric():
     # not False -> True
 #+end_src python
 
-** Doing Something to Do Nothing
-#+begin_src python
-if x == 10:
-    score += 10
-else:
-    score += 0   # doing something that does nothing
-#+end_src
+** Bruteforcing Hard Code
 #+begin_quote
-It's pointless. Consider removing the ~else~ branch. \\
-Or, use ~pass~, a command that /actually/ does nothing.
+- Hardcoding is naively making straightforward code, but generally inefficient & unapplicable.
+- To improve & get credited, you should really know *what* and *how* you are doing it. \\
+/Consider the following situational code./
 #+end_quote
 #+begin_src python
-if x == 10:
-    score += 10
-else:
-    pass
+go(100, 0, 4)
+go(90, 10, 3)
+go(80, 20, 4)
+go(70, 30, 4)
+go(60, 40, 4)
+#+end_src
+#+begin_quote
+This makes for difficult reading. To *simplify* & *better understand* this, make a conditional ~for~ loop.
+#+end_quote
+#+begin_src python
+for k in range(100, 50, -10):
+    t = 4
+    if k == 90:
+        t = 3
+    go(k, 100-k, t)
 #+end_src
 
 -----
