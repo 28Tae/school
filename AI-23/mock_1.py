@@ -23,38 +23,38 @@ def move(distance, power = 50, t = 0.05):
 
 
 "Section B Question 2"
-def right_IF(start, end):
-    while angle() < end - 15:
-        go(100, -100, 1/24)
-    go(-100, 100, 1/24) # counteract inertia
-    while angle() < end and angle() > start: #considers infinite loops
-        go(5, -5, 1/24)
-        go(0, 0, 1/24)  # counteract inertia
         
 def right(a = 90):
     "Note the difference between a pivot, and a turn"
     start = angle()
     end = start + a     # calculate ending angle
     if end < 360:
-        right_IF(start, end)
-    else: # turns beyond a full revolution
+        "Partial"
+        while angle() < end - 15:
+            go(100, -100, 1/24)
+        go(-100, 100, 1/24) # counteract inertia
+        while angle() < end and angle() > start: #considers infinite loops
+            go(5, -5, 1/24)
+            go(0, 0, 1/24)  # counteract inertia
+    else:
+        "Turns beyond a full revolution"
         zero = False
         prev = angle()
         while not zero: # turning until car passes 0 degrees
             go(100, -100, 1/24)
-            go(0, 0, 1/24) # inertia consideration
-            if angle() < prev: # only occurs as angle changes from 350+ to 0+
+            go(0, 0, 1/24)
+            if angle() < prev: # only when angle changes from ~359 to >0
                 zero = True
-            prev = angle()
-        end = end - 360 # new objective angle
-        if angle() < end: # ensure that objective angle has not been overlapped
-            right(end - angle()) 
-            # call function within itself to turn (recursive functions)
-        elif angle() > end: 
-   # slowly adjust car backwards to return to objective angle
+            prev = angle() 
+            
+        end = end - 360
+        
+        if angle() < end:
+            right(end - angle()) # recursion
+        elif angle() > end: # slowly adjust back in case of overshooting
             while angle() > end and angle() < 350:
                 go(-5, 5, 1/24)
-                go(0, 0, 1/24) # inertia consideration
+                go(0, 0, 1/24)
                 
             
             
