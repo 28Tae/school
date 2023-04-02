@@ -1,34 +1,85 @@
 #+title: IF AI'23 Module Notes
-****** [[https://youtu.be/wpV-gGA4PSk][V0.4, last updated 22/03/23]]
-- ~concepts~
-- ~common mistakes~
-
+****** [[https://youtu.be/wpV-gGA4PSk][V??, last updated 02/04/23]]
 -----
-
-* ~!~ ESSENTIAL CODE
-#+begin_src python
-def ultrasound(i):
-    return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
-
-def turn_right():
-    go(100, -100, 0.65)
-    go(10, -10, 0.3)
-
-def turn_left():
-    go(-100, 100, 0.65)
-    go(-10, 10, 0.3)
-#+end_src
-
------
-
-* ˚ʚ Concepts ɞ˚
-** Movement
+* AI Theory
+*** /Ages/
+| *Steam* | 1760-1850 |
+| *Electricity* | 1850-1900s |
+| *Information* | 1950-2000 |
+| *AI* | 2000-present |
+*** /Turing Test - 1950/
+- test on *human intelligence* in AI
+- human interviews unknown entity (AI or human)
+- ~>30%~ pass if AI remains unidentified
+*** /Three Periods/
+- Dartmouth AI conference - /aug 1956/
+- *1^{st} wave*
+    - 1951 - 1^{st} AI neural network
+    - 1964 - ELIZA, 1^{st} natural language system
+    - 1965 - 1^{st} expert system
+- *1^{st} winter* /[limited computing power]/
+- *2^{nd} wave*
+    - 1982 - feedback loop neural networks
+    - 1986 - weight-based error system
+    - 1989 - convolutional image techniques
+- *2^{nd} winter* /[impractical & costly AI]/
+- *3^{rd} wave*
+    - 2006 - deep learning neural network
+    - 2007 - ImageNET database
+    - 2009 - efficient GPU processing, not CPU
+    - 2016 - AlphaGO victory
 #+begin_quote
-*REDUCE POWER / TIME* /[be slower]/ in a loop for ACCURACY
+- ᴀʟɢᴏʀɪᴛʜᴍꜱ helped solve practical problems systematically
+- ᴅᴀᴛᴀ surge due to internet
+- ᴄᴏᴍᴘᴜᴛɪɴɢ ᴘᴏᴡᴇʀ surge due to efficient processing
 #+end_quote
-- ~go(left, right, time)~
+*** /AI > ML > DL/
+**** Machine Learning
+- automatically learn from data/actions
+- supervised, unsupervised, reinforcement
+**** Deep Learning
+- mimic workings of human brain
+- unstructured & unlabelled learning
+- combines low-level features
+*** /Practical AI/
+| gameplay | speech recognit^{n} | autonomous driving | 
+| image recognit^{n} | facial recognit^{n} | natural language |
+-----
+* AI Python
+** I. Movement, Functions
+- *ᴘᴀʀᴀᴍᴇᴛᴇʀ* -- predefined variables within func^{n}
+- *ᴀʀɢᴜᴍᴇɴᴛ* -- inputted values
+#+begin_src
+to be accurate in loops, reduce power/time
+#+end_src
+- ~print(..., end='\n', sep=' ')~
 - ~set(x, y, angle)~
-- ~angle()~
+- ~angle()~ -- clockwise from N
+- ~go(left, right, time)~
+    - polarity ± -- /direction/
+    - absolute value -- /power/
+
+** II. Variables ~var = 10~
+*** Datatypes
+- *ɪɴᴛᴇɢᴇʀ*
+- *ꜱᴛʀɪɴɢ* -- 'text type'
+- *ʟɪꜱᴛ* -- [contains countably many objects]
+- *ʙᴏᴏʟᴇᴀɴ* -- True VS False
+
+*** Comparison Operators
+- ~<~ -- less than
+- ~>~ -- more than
+- ~==~ -- equal to
+- ~<=~ -- less than / equal to
+- ~>=~ -- more than / equal to
+#+begin_quote
+do NOT confuse ~=~ assignment operator VS ~==~ comparing operator
+#+end_quote
+
+#+begin_src python
+raise Exception('ALL STUFF BELOW NEEDS REVAMP! not complete...')
+#+end_src
+-----
 
 ** Loops
 
@@ -57,84 +108,3 @@ threshold -- ~128~
 #+end_quote
 + =get_color()[sensor][rgb]= -- /rgb:/ red_{~0~}, green_{~1~}, blue_{~2~}
 + =get_intensity()[sensor]= -- /brightness/ / ave RGB reading
-
------
-
-* ˚ʚ Common Mistakes ɞ˚
-** Improper Syntax
-#+begin_quote
-Any =loop= and =condition= MUST have a =:=. \\
-Calling a =function= MUST contain =()= /(may have parameters)/
-#+end_quote
-#+begin_src python
-for i in range(5):      # note the :
-    if True:            # note the :
-        ultra = precise_results(0)      # note the ()
-        ultra2 = get_ultrasound()[0]    # see the difference
-#+end_src
-
-** ~=~ OR ~==~
-#+begin_quote
-~=~ *assigns* a variable \\
-~==~ *compares* whether 2 variables are equal
-#+end_quote
-#+begin_src python
-i = 0          # note the =
-print(i == 0)  # note the ==
-#+end_src
-
-** Dysfunctional Loops
-#+begin_quote
-/Rewrite/remove unnecessary loops./ \\
-An obsolete =for= or a =while= loop in a =while= can *needlessly hinder* your program.
-#+end_quote
-#+begin_src python
-while angle() < 50:
-    for i in range(8):  # just remove this
-        ...
-...
-#+end_src
-
-** Classical Boolean Problem
-#+begin_src python
-def eval_not_numeric():
-    if is_data_numeric == True:
-        return False
-    else:
-        return True
-#+end_src
-#+begin_quote
-The above is unnecessarily *inefficient*. /Do this instead:/
-#+end_quote
-#+begin_src python
-def eval_not_numeric():
-    return not is_data_numeric
-    # not True -> False
-    # not False -> True
-#+end_src python
-
-** Bruteforcing Hard Code
-#+begin_quote
-- Hardcoding is naively making straightforward code, but generally inefficient & unapplicable.
-- To improve & get credited, you should really know *what* and *how* you are doing it. \\
-/Consider the following situational code./
-#+end_quote
-#+begin_src python
-go(100, 0, 4)
-go(90, 10, 3)
-go(80, 20, 4)
-go(70, 30, 4)
-go(60, 40, 4)
-#+end_src
-#+begin_quote
-This makes for difficult reading. To *simplify* & *better understand* this, make a conditional ~for~ loop.
-#+end_quote
-#+begin_src python
-for k in range(100, 50, -10):
-    t = 4
-    if k == 90:
-        t = 3
-    go(k, 100-k, t)
-#+end_src
-
------
