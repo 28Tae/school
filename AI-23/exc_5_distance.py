@@ -1,4 +1,4 @@
-t = 1.0
+t = 1
 
 go(0, 0, 0.1) # initialize
 dist_start = get_ultrasound()[3]
