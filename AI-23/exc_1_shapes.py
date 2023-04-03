@@ -1,9 +1,11 @@
+"generally, these serve as geometric representations, and remain impractical in problem-solving."
+
 def oval():
     for i in range(2):
         go(100,100,.6)
         go(100,0,2.65)
     
-def treePointTurn():
+def tree_point_turn():
     go(50,50,1)
     go(98,0,1.35)
     go(50,50,1)
@@ -20,7 +22,3 @@ def star():
     for i in range(5):
         go(80,80,2)
         go(100,-100,1.06)
-
-"""Other than star() which is more theoretical and systematic,
-generally all these functions are not applicable,
-and serve as a geometric example."""
