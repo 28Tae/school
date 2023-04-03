@@ -1,27 +1,15 @@
-time = 1.0
-power = 20
+t = 1.0
 
-go(0,0,.1) # initialize
+go(0, 0, 0.1) # initialize
 dist_start = get_ultrasound()[3]
-
-go(power,power,time)
+go(20, 20, t)
 dist_final = get_ultrasound()[3]
 
 dist = dist_final - dist_start
-print('distance',dist)
+print('distance', dist)
 
-"""
-on ultrasound sensor 3 (BACK),
+# on rear sensor (3)
+# dist = dist_final - dist_start
 
-- moving forward -> FURTHER from the back obstacle,
-- reading will INCREASE,
-- therefore, must subtract 'start' from 'final'.
-
-
-but if you use sensor 2 (FRONT),
-- moving forward -> CLOSER to front obstacle,
-- reading will DECREASE,
-- therefore, must subtract 'final' from 'start' >>
-  dist = dist_start - dist_final
-
-"""
+# but on front sensor (2)
+# dist = dist_start - dist_final
