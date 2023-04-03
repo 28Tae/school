@@ -60,35 +60,68 @@ to be accurate in loops, reduce power/time
     - absolute value -- /power/
 
 ** II. Variables ~var = 10~
-*** Datatypes
+*** /Datatypes/
 - *ɪɴᴛᴇɢᴇʀ*
 - *ꜱᴛʀɪɴɢ* -- 'text type'
 - *ʟɪꜱᴛ* -- [contains countably many objects]
 - *ʙᴏᴏʟᴇᴀɴ* -- True VS False
 
-*** Comparison Operators
-- ~<~ -- less than
-- ~>~ -- more than
-- ~==~ -- equal to
-- ~<=~ -- less than / equal to
-- ~>=~ -- more than / equal to
+*** /Arithmetic Operators/
+| ~+~ | plus | ~-~ | minus |
+| ~*~ | multiply | ~/~ | divide |
+| ~**~ | exponent | ~%~ | modulo |
+
+#+begin_src python
+x = x + 2   # arithmetic operator
+x += 2      # arithmetic assignment operator
+#+end_src
+
+*** /Comparison Operators/
+| ~==~ | is equal to? | | |
+| ~<~ | less than | ~<=~ | less than/equal to |
+| ~>~ | more than | ~>=~ | more than/equal to |
 #+begin_quote
 do NOT confuse ~=~ assignment operator VS ~==~ comparing operator
 #+end_quote
 
+*** /Lists/
+- *ʟɪꜱᴛ* are enclosed in ~[]~; commas separate items
+- ~list[index]~ -- extract element /(index starts from 0)/
+- ~list.append(item)~ -- adds to the end of list
 #+begin_src python
-raise Exception('ALL STUFF BELOW NEEDS REVAMP! not complete...')
+li = [0, 3, True, ['A', 'B']]
+li.append(False)
+print(li)       # [0, 1, True, ['A', 'B'], False]
+print(li[0])    # 0
 #+end_src
------
 
-** Loops
+** III. Loops
+#+begin_quote
+- *ɪᴛᴇʀᴀʙʟᴇ* -- an object with countably many items
+- ~for i in iterable:~ -- loops thru an iterable *(fixed # of times)*
+#+end_quote
+- ~range(start, stop, step)~ -- a num sequence, excludes ~stop~
+- ~for i in range(...):~ -- loops 5 times
+- ~while A:~ -- loops /while/ A is True
+#+begin_src
+remember to INDENT within loops
+#+end_src
 
-- ~range(start,stop,step)~ -- a num sequence, excludes ~stop~
-- ~for i in range(5):~ -- repeats 5 times *(fixed #)*
-- ~while A:~ -- repeats /while/ A is True, or /until/ A is False
+** IV. Conditionals
+#+begin_src python
+if x == 0:      # Only if x is 0
+    ...
+elif x >= 99:   # If above is False, only if x not less than 99
+    ...
+elif x != 50:   # If above is False, only if x not equal 50
+    ...
+else:           # Runs in all fail cases
+    ...
+#+end_src
 
-** Ultrasound Sensor
-- =get_ultrasound()[sensor]= -- includes /some random/ error
+** V. Sensors & Error
+*** /Ultrasound Sensor/
+- ~get_ultrasound()[sensor]~ -- includes /some random/ error
 - SMALLER value ⇌ CLOSER dist
 - use *AVERAGE* of =3= readings -- reduce error
 #+begin_quote
@@ -97,8 +130,7 @@ raise Exception('ALL STUFF BELOW NEEDS REVAMP! not complete...')
 #+end_quote
 [[https://imgur.com/C3RRSEBl.jpg]]
 
-
-** Color Sensor
+*** /Color Sensor/
 #+begin_quote
 sensors -- ~0 - 3~ (left to right)
 #+end_quote
@@ -108,3 +140,14 @@ threshold -- ~128~
 #+end_quote
 + =get_color()[sensor][rgb]= -- /rgb:/ red_{~0~}, green_{~1~}, blue_{~2~}
 + =get_intensity()[sensor]= -- /brightness/ / ave RGB reading
+
+*** /Error/
+- ᴇʀʀᴏʀ = |ᴠᴀʟᴜᴇ_{*ᴛʀᴜᴇ*} - ᴠᴀʟᴜᴇ_{*ᴍᴇᴀꜱᴜʀᴇᴅ*}|
+- ᴀᴠᴇʀᴀɢᴇ ᴇʀʀᴏʀ -- raw mean of all obtainable errors
+- ʀᴏᴏᴛ ᴍᴇᴀɴ ꜱǫᴜᴀʀᴇ ᴇʀʀᴏʀ -- the root of the sum of all errors squared
+- *ᴛᴏ ʀᴇᴅᴜᴄᴇ ᴇʀʀᴏʀ*, take ~average~ of several readings
+#+begin_src python
+def precise_results(i):
+    return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
+#+end_src
+-----
