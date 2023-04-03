@@ -1,5 +1,5 @@
 #+title: IF AI'23 Module Notes
-****** [[https://youtu.be/wpV-gGA4PSk][V??, last updated 02/04/23]]
+****** [[https://youtu.be/wpV-gGA4PSk][V1.0.1, last updated 03/04/23]]
 -----
 * AI Theory
 *** /Ages/
@@ -143,8 +143,8 @@ threshold -- ~128~
 
 *** /Error/
 - ᴇʀʀᴏʀ = |ᴠᴀʟᴜᴇ_{*ᴛʀᴜᴇ*} - ᴠᴀʟᴜᴇ_{*ᴍᴇᴀꜱᴜʀᴇᴅ*}|
-- ᴀᴠᴇʀᴀɢᴇ ᴇʀʀᴏʀ -- raw mean of all obtainable errors
-- ʀᴏᴏᴛ ᴍᴇᴀɴ ꜱǫᴜᴀʀᴇ ᴇʀʀᴏʀ -- the root of the sum of all errors squared
+- ᴀᴠᴇʀᴀɢᴇ ᴇʀʀᴏʀ -- /raw mean of all obtainable errors/
+- ʀᴏᴏᴛ ᴍᴇᴀɴ ꜱǫᴜᴀʀᴇ ᴇʀʀᴏʀ -- /the root of the sum of all errors squared/
 - *ᴛᴏ ʀᴇᴅᴜᴄᴇ ᴇʀʀᴏʀ*, take ~average~ of several readings
 #+begin_src python
 def precise_results(i):
