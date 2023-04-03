@@ -1,8 +1,8 @@
 def ultrasound(i):
     return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
 
-u_init = ultrasound(2)       # ultrasound
-i_init = get_intensity()[0]  # intensity
+u_init = ultrasound(2)       # ultrasound list
+i_init = get_intensity()[0]  # intensity list
 
 u_li = [u_init]
 i_li = [i_init]
@@ -15,5 +15,6 @@ for i in range(10):
     u_li.append(u_init)
     i_li.append(i_init)
 
+# logging
 print('ultrasound list', u_li)
 print('intensity list', i_li)
