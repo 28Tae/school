@@ -1,5 +1,5 @@
 #+title: IF AI'23 Module Notes
-****** [[https://youtu.be/wpV-gGA4PSk][V1.1, last updated 04/04/23]]
+****** [[https://youtu.be/wpV-gGA4PSk][V1.2, last updated 15/04/23]]
 -----
 * AI Python
 ** I. Movement, Functions
@@ -79,10 +79,13 @@ else:           # Runs in all fail cases
 - ~get_ultrasound()[sensor]~ -- includes /some random/ error
 - SMALLER value ⇌ CLOSER dist
 - use *AVERAGE* of =3= readings -- reduce error
-#+begin_quote
-*DIST_{moved} = START - END* ^{~2~} \\
-*DIST_{moved} = END - START* ^{~3~}
-#+end_quote
+#+begin_src python
+    def precise_results(i):
+        return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
+#+end_src
+
+- *DIST_{moved} = START - END* ^{~2~} \\
+- *DIST_{moved} = END - START* ^{~3~}
 [[https://imgur.com/C3RRSEBl.jpg]]
 
 *** /Color Sensor/
@@ -95,14 +98,3 @@ threshold -- ~128~
 #+end_quote
 + =get_color()[sensor][rgb]= -- /rgb:/ red_{~0~}, green_{~1~}, blue_{~2~}
 + =get_intensity()[sensor]= -- /brightness/ / ave RGB reading
-
-*** /Error/
-- ᴇʀʀᴏʀ = |ᴠᴀʟᴜᴇ_{*ᴛʀᴜᴇ*} - ᴠᴀʟᴜᴇ_{*ᴍᴇᴀꜱᴜʀᴇᴅ*}|
-- ᴀᴠᴇʀᴀɢᴇ ᴇʀʀᴏʀ -- /raw mean of all obtainable errors/
-- ʀᴏᴏᴛ ᴍᴇᴀɴ ꜱǫᴜᴀʀᴇ ᴇʀʀᴏʀ -- /the root of the sum of all errors squared/
-- *ᴛᴏ ʀᴇᴅᴜᴄᴇ ᴇʀʀᴏʀ*, take ~average~ of several readings
-#+begin_src python
-def precise_results(i):
-    return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
-#+end_src
------
