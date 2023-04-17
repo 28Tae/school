@@ -1,20 +1,23 @@
 #+title: IF AI'23 Module Notes
-****** [[https://youtu.be/wpV-gGA4PSk][V1.2, last updated 15/04/23]]
+#+begin_quote
+****** [[https://youtu.be/wpV-gGA4PSk][V1.3, last updated April 2023]]
+****** /~ Qianyi, 2i1. Have fun./
+#+end_quote
+
 -----
-* AI Python
-** I. Movement, Functions
-- *ᴘᴀʀᴀᴍᴇᴛᴇʀ* -- predefined variables within func^{n}
+* I. Movement, Functions
+- *ᴘᴀʀᴀᴍᴇᴛᴇʀ* -- predefined variables within a func^{n}
 - *ᴀʀɢᴜᴍᴇɴᴛ* -- inputted values
 #+begin_src
 to be accurate in loops, reduce power/time
 #+end_src
-- ~print(..., end='\n', sep=' ')~
+- ~print(objects)~
 - ~set(x, y, angle)~
 - ~angle()~ -- clockwise from N
 - ~go(left, right, time)~
     - magnitude -- /the extent of power/
 
-** II. Variables
+* II. Variables
 *** /Datatypes/
 - *ɪɴᴛᴇɢᴇʀ*
 - *ꜱᴛʀɪɴɢ* -- 'text type'
@@ -50,38 +53,42 @@ print(li)        # [0, 1, True, ['A', 'B'], False]
 print(li[3][1])  # 'B'
 #+end_src
 
-** III. Loops
-#+begin_quote
-- *ɪᴛᴇʀᴀʙʟᴇ* -- an object with countably many items
-- ~for i in iterable:~ -- loops thru an iterable *(fixed # of times)*
-#+end_quote
+* III. Loops
 - ~range(start, stop, step)~ -- a num sequence, excludes ~stop~
 - ~for i in range(...):~ -- loops 5 times
 - ~while A:~ -- loops /while/ A is True
 #+begin_src
-remember to INDENT within loops
+remember INDENTATION for codes in loops
 #+end_src
 
-** IV. Conditionals
+* IV. Conditionals
 #+begin_src python
-if x == 0:      # Only if x is 0
+if x == 0:      # If x is 0
+    pass
+elif x >= 99:   # If x is not 0, and if x not less than 99
     ...
-elif x >= 99:   # If above is False, only if x not less than 99
+elif x != 50:   # If aforementioned are False, and if x not equal 50
     ...
-elif x != 50:   # If above is False, only if x not equal 50
-    ...
-else:           # Runs in all fail cases
+else:           # Runs in all False cases
     ...
 #+end_src
 
-** V. Sensors & Error
+* V. Sensors & Error
 *** /Ultrasound Sensor/
 - ~get_ultrasound()[sensor]~ -- includes /some random/ error
 - SMALLER value ⇌ CLOSER dist
 - use *AVERAGE* of =3= readings -- reduce error
 #+begin_src python
-    def precise_results(i):
-        return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
+def precise_results(i):
+    return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
+    
+'OR'
+
+def precise_results(i, count = 5):  # the higher the count, the more accurate (but laggier)
+    total = 0
+    for k in range(count):
+        total += get_ultrasound()[i]
+    return total/count
 #+end_src
 
 - *DIST_{moved} = START - END* ^{~2~} \\
@@ -97,4 +104,6 @@ value range -- ~0 - 255~ *(dark to bright)*\\
 threshold -- ~128~
 #+end_quote
 + =get_color()[sensor][rgb]= -- /rgb:/ red_{~0~}, green_{~1~}, blue_{~2~}
-+ =get_intensity()[sensor]= -- /brightness/ / ave RGB reading
++ =get_intensity()[sensor]= -- average of RGB collected
+
+-----
