@@ -1,7 +1,3 @@
-# Hard coding, or naive solution, is a brute force straightforward way of coding
-# This is a last ditch attempt which is inefficient but may get you SOME credit.
-# It's best to know what you're doing, and how to do it.
-
 "Section B Q1"
 def avg_dist(i, count = 3): 
     # i -> the sensor parameter
@@ -21,41 +17,10 @@ def move(distance, power = 50, t = 0.05):
         temp = get_ultrasound()[3]
     return abs(start - temp) # returns the deviated distance
 
-
-"Section B Question 2"
-        
-def right(a = 90):
-    "Note the difference between a pivot, and a turn"
-    start = angle()
-    end = start + a     # calculate ending angle
-    if end < 360:
-        "Partial"
-        while angle() < end - 15:
-            go(100, -100, 1/24)
-        go(-100, 100, 1/24) # counteract inertia
-        while angle() < end and angle() > start: #considers infinite loops
-            go(5, -5, 1/24)
-            go(0, 0, 1/24)  # counteract inertia
-    else:
-        "Turns beyond a full revolution"
-        zero = False
-        prev = angle()
-        while not zero: # turning until car passes 0 degrees
-            go(100, -100, 1/24)
-            go(0, 0, 1/24)
-            if angle() < prev: # only when angle changes from ~359 to >0
-                zero = True
-            prev = angle() 
-            
-        end = end - 360
-        
-        if angle() < end:
-            right(end - angle()) # recursion
-        elif angle() > end: # slowly adjust back in case of overshooting
-            while angle() > end and angle() < 350:
-                go(-5, 5, 1/24)
-                go(0, 0, 1/24)
-                
+"""
+Due to complicated code and techniques utilised (recursive functions),
+Section B Q2 will not have its answers put up.
+"""
             
             
 "Section A Question 1"
