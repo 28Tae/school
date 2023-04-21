@@ -1,38 +1,52 @@
-#+title: IF AI'23 Module Notes
+#+title: IF AI'23 Modular Notes
 #+begin_quote
-****** [[https://youtu.be/wpV-gGA4PSk][V1.3, last updated April 2023]]
+****** [[https://youtu.be/wpV-gGA4PSk][V1.4, info correct as of Apr 2023]]
 ****** /~ Qianyi, 2i1. Have fun./
 #+end_quote
 
 -----
 * I. Movement, Functions
-- *ᴘᴀʀᴀᴍᴇᴛᴇʀ* -- predefined variables within a func^{n}
-- *ᴀʀɢᴜᴍᴇɴᴛ* -- inputted values
-#+begin_src
-to be accurate in loops, reduce power/time
-#+end_src
-- ~print(objects)~
-- ~set(x, y, angle)~
-- ~angle()~ -- clockwise from N
-- ~go(left, right, time)~
-    - magnitude -- /the extent of power/
+*** /Within Functions/
+#+begin_quote
+*ᴘᴀʀᴀᴍᴇᴛᴇʀ* -- predefined variables within func^{n} \\
+*ᴀʀɢᴜᴍᴇɴᴛ* -- inputted values
+#+end_quote
+- ~return ...~ -- ends function & offers an end-value
+#+begin_src python
+def calc_vector(a, b):
+    c = (a**2+b**2)**0.5
+    return c
+print(calc_vector(1, 1))  # 1.41421...
+#+end_src python
 
-* II. Variables
+*** /Impt Functions/
+- ~print(...)~
+- ~set(x, y, angle)~
+- ~angle()~ -- returns float from 0 to 359, clockwise from N
+- ~go(left_power, right_power, time)~
+- ~abs(num)~ -- returns absolute value
+- ~round(float)~ -- rounds a decimal-point value
+
+\\
+* II. Variables & Lists
+*** /Declaration & Assignment/
+#+begin_src python
+x = 10     # creates variable
+x -= 5     # reassigns
+print(x)   # utilises variable
+#+end_src python
+
 *** /Datatypes/
 - *ɪɴᴛᴇɢᴇʀ*
-- *ꜱᴛʀɪɴɢ* -- 'text type'
-- *ʟɪꜱᴛ*
+- *"ꜱᴛʀɪɴɢ"* 
+- *[ʟɪꜱᴛ]*
 - *ʙᴏᴏʟᴇᴀɴ* -- ~True~ VS ~False~
 
 *** /Arithmetic Operators/
 | ~+~ | plus | ~-~ | minus |
 | ~*~ | multiply | ~/~ | divide |
-| ~**~ | exponent | ~%~ | modulo |
-
-#+begin_src python
-x = x + 2   # arithmetic operator
-x += 2      # arithmetic assignment operator
-#+end_src
+| ~**~ | raise power | ~%~ | modulo |
+~x = x + 2~ can be shortened to ~x += 2~ /(applies to other operandi)/
 
 *** /Comparison Operators/
 | | | ~==~ | equal to?  |
@@ -43,8 +57,9 @@ do NOT confuse: ~=~ *ᴀꜱꜱɪɢɴᴍᴇɴᴛ ᴏᴘᴇʀᴀᴛᴏʀ* VS ~==~ 
 #+end_quote
 
 *** /Lists/
-- *ʟɪꜱᴛ* are enclosed in ~[]~; commas separate items
-- ~list[index]~ -- access element /(index starts from 0)/
+- Enclosed in ~[]~ with separating commas
+- Index starts from *0* NOT 1.
+- ~list[index]~ -- access element given an index
 - ~list.append(item)~ -- adds to end of list
 #+begin_src python
 li = [0, 3, True, ['A', 'B']]
@@ -53,18 +68,26 @@ print(li)        # [0, 1, True, ['A', 'B'], False]
 print(li[3][1])  # 'B'
 #+end_src
 
+\\
 * III. Loops
 - ~range(start, stop, step)~ -- a num sequence, excludes ~stop~
-- ~for i in range(...):~ -- loops 5 times
-- ~while A:~ -- loops /while/ A is True
-#+begin_src
-remember INDENTATION for codes in loops
+#+begin_src python
+# the 2 different loops...
+for i in range(5):
+    pass
+while x == 0:   # or any acceptable booleans
+    pass
 #+end_src
+#+begin_quote
+- remember INDENTATION for codes in loops
+- typically in LOOPS, go() duration and power should be MINIMAL.
+#+end_quote
 
-* IV. Conditionals
+\\
+* IV. If-Elif-Else
 #+begin_src python
 if x == 0:      # If x is 0
-    pass
+    ...
 elif x >= 99:   # If x is not 0, and if x not less than 99
     ...
 elif x != 50:   # If aforementioned are False, and if x not equal 50
@@ -73,17 +96,13 @@ else:           # Runs in all False cases
     ...
 #+end_src
 
-* V. Sensors & Error
+\\
+* V. Sensors
 *** /Ultrasound Sensor/
-- ~get_ultrasound()[sensor]~ -- includes /some random/ error
+- ~get_ultrasound()[sensor]~
 - SMALLER value ⇌ CLOSER dist
-- use *AVERAGE* of =3= readings -- reduce error
+- to reduce random error, take mean of *multiple* readings
 #+begin_src python
-def precise_results(i):
-    return (get_ultrasound()[i] + get_ultrasound()[i] + get_ultrasound()[i])/3
-    
-'OR'
-
 def precise_results(i, count = 5):  # the higher the count, the more accurate (but laggier)
     total = 0
     for k in range(count):
