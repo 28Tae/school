@@ -1,66 +1,76 @@
-#+title: IF AI'23 Modular Notes
-#+begin_quote
-****** [[https://youtu.be/wpV-gGA4PSk][V1.4, info correct as of Apr 2023]]
-****** /~ Qianyi, 2i1. Have fun./
-#+end_quote
+#+title: IF AI Module Notes =V1.5=
+****** [[https://youtu.be/wpV-gGA4PSk][~Qianyi, 2i1. Have fun.]]
+\\
 
 -----
-* I. Movement, Functions
-*** /Within Functions/
+* I) Movement, Functions
+*** /Defining Functions/
 #+begin_quote
 *ᴘᴀʀᴀᴍᴇᴛᴇʀ* -- predefined variables within func^{n} \\
 *ᴀʀɢᴜᴍᴇɴᴛ* -- inputted values
 #+end_quote
-- ~return ...~ -- ends function & offers an end-value
+| ~return ...~ | ends function & reports back a value |
 #+begin_src python
-def calc_vector(a, b):
+def calc_vector(a, b):  
     c = (a**2+b**2)**0.5
     return c
-print(calc_vector(1, 1))  # 1.41421...
+    
+print(calc_vector(1, 1))
+# 1.4142135623730951
 #+end_src python
 
-*** /Impt Functions/
-- ~print(...)~
-- ~set(x, y, angle)~
-- ~angle()~ -- returns float from 0 to 359, clockwise from N
-- ~go(left_power, right_power, time)~
-- ~abs(num)~ -- returns absolute value
-- ~round(float)~ -- rounds a decimal-point value
+*** /Preset Functions/
+| ~print(objects*)~ | prints out objects|
+| ~angle()~ | returns the current angle in a numerical float^{(1)}, ranges 0 - 359 |
+| ~set(x, y, angle)~ | |
+| ~go(left, right, time)~ | move/turn/pivot |
+| ~abs(num)~ | returns absolute/positive value |
+| ~round(float)~ | rounds up/down a float^{(1)} |
+
+#+begin_quote
+(1) -- =float= is a numerical value, that has decimal places.
+#+end_quote
 
 \\
-* II. Variables & Lists
-*** /Declaration & Assignment/
+-----
+* II) Variables & Lists
 #+begin_src python
-x = 10     # creates variable
+x = 10     # create an integer variable
 x -= 5     # reassigns
-print(x)   # utilises variable
+print(x)   # using the variable
 #+end_src python
 
 *** /Datatypes/
-- *ɪɴᴛᴇɢᴇʀ*
-- *"ꜱᴛʀɪɴɢ"* 
-- *[ʟɪꜱᴛ]*
+- *ɪɴᴛᴇɢᴇʀ* / *ꜰʟᴏᴀᴛ*
+- *ꜱᴛʀɪɴɢ*
+- *ʟɪꜱᴛ* ~[]~
 - *ʙᴏᴏʟᴇᴀɴ* -- ~True~ VS ~False~
 
-*** /Arithmetic Operators/
+*** /Numeric Operations/
 | ~+~ | plus | ~-~ | minus |
 | ~*~ | multiply | ~/~ | divide |
-| ~**~ | raise power | ~%~ | modulo |
-~x = x + 2~ can be shortened to ~x += 2~ /(applies to other operandi)/
+| ~**~ | exponent | ~%~ | modulo |
+~x = x + 2~ can be written as ~x += 2~ /(applies to above)/
 
 *** /Comparison Operators/
 | | | ~==~ | equal to?  |
 | ~<~ | less than? | ~<=~ | less/equal? |
 | ~>~ | more than? | ~>=~ | more/equal? |
-#+begin_quote
-do NOT confuse: ~=~ *ᴀꜱꜱɪɢɴᴍᴇɴᴛ ᴏᴘᴇʀᴀᴛᴏʀ* VS ~==~ *ᴄᴏᴍᴘᴀʀɪꜱᴏɴ ᴏᴘᴇʀᴀᴛᴏʀ*
-#+end_quote
+
+***** AVOID CONFUSION
++ ~=~ *ᴀꜱꜱɪɢɴᴍᴇɴᴛ* ᴏᴘᴇʀᴀᴛᴏʀ
++ ~==~ *ᴄᴏᴍᴘᴀʀɪꜱᴏɴ* ᴏᴘᴇʀᴀᴛᴏʀ
+
+*** /Boolean Operators/
+| ~A and B~ | both true? |
+| ~A or B~ | either/both true? |
+| ~not A~ | if ᴛʀᴜᴇ, return ꜰᴀʟꜱᴇ else ᴛʀᴜᴇ |
 
 *** /Lists/
 - Enclosed in ~[]~ with separating commas
 - Index starts from *0* NOT 1.
-- ~list[index]~ -- access element given an index
-- ~list.append(item)~ -- adds to end of list
+| ~list[index]~ | access element, given index |
+| ~list.append(val)~ | adds to end of list |
 #+begin_src python
 li = [0, 3, True, ['A', 'B']]
 li.append(False)
@@ -69,39 +79,40 @@ print(li[3][1])  # 'B'
 #+end_src
 
 \\
-* III. Loops
-- ~range(start, stop, step)~ -- a num sequence, excludes ~stop~
+-----
+* III) Loops, Conditionals
+- typically in loops, =go()= duration and power is *minimal*.
+| ~range(start, stop, step)~ | a numerical sequence that excludes ~stop~ |
 #+begin_src python
-# the 2 different loops...
 for i in range(5):
-    pass
-while x == 0:   # or any acceptable booleans
-    pass
-#+end_src
-#+begin_quote
-- remember INDENTATION for codes in loops
-- typically in LOOPS, go() duration and power should be MINIMAL.
-#+end_quote
-
-\\
-* IV. If-Elif-Else
-#+begin_src python
-if x == 0:      # If x is 0
     ...
-elif x >= 99:   # If x is not 0, and if x not less than 99
+    
+while A == True:
     ...
-elif x != 50:   # If aforementioned are False, and if x not equal 50
     ...
-else:           # Runs in all False cases
-    ...
+    "this is a nested conditional"
+    if x == 0:      # if x is 0
+        ...
+    elif x >= 99:   # if x not 0, and not less than 99
+        ...
+    elif x != 50:   # if x not 0, and less than 99, and not equal 50
+        ...
+    else:           # runs in all False cases
+        ...
 #+end_src
 
 \\
-* V. Sensors
-*** /Ultrasound Sensor/
-- ~get_ultrasound()[sensor]~
-- SMALLER value ⇌ CLOSER dist
-- to reduce random error, take mean of *multiple* readings
+-----
+* IV) Sensors
+*** /Ultrasound/Distance/
+#+begin_src py
+get_ultrasound()[sensor]
+#+end_src
+| *0* ^{(f-left)} | *1* ^{(front)} | *2* ^{(f-right)} |
+| | *3* ^{(rear)} | |
+- *DIST_{moved} = INIT - END* ^{~sensor 2~}
+- *DIST_{moved} = END - INIT* ^{~sensor 3~}
+- reduce random error, take mean of *multiple* readings
 #+begin_src python
 def precise_results(i, count = 5):  # the higher the count, the more accurate (but laggier)
     total = 0
@@ -110,19 +121,14 @@ def precise_results(i, count = 5):  # the higher the count, the more accurate (b
     return total/count
 #+end_src
 
-- *DIST_{moved} = START - END* ^{~2~} \\
-- *DIST_{moved} = END - START* ^{~3~}
-[[https://imgur.com/C3RRSEBl.jpg]]
-
-*** /Color Sensor/
-#+begin_quote
-sensors -- ~0 - 3~ (left to right)
+*** /Color/Intensity/
+| *0* ^{(f-left)} | *1* ^{(left)} | *2* ^{(right)} | *3* ^{(f-right)} |
++ value range -- ~0 - 255~ *(dark to bright)*
++ in =[rgb]= parameter, red^{=0=}, green^{=1=}, blue^{=2=}
 #+end_quote
-#+begin_quote
-value range -- ~0 - 255~ *(dark to bright)*\\
-threshold -- ~128~
-#+end_quote
-+ =get_color()[sensor][rgb]= -- /rgb:/ red_{~0~}, green_{~1~}, blue_{~2~}
-+ =get_intensity()[sensor]= -- average of RGB collected
+#+begin_src py
+get_color()[sensor][rgb]    # specificed colour strength
+get_intensity()[sensor]     # average RGB strength
+#+end_src
 
 -----
