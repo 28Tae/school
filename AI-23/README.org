@@ -1,4 +1,4 @@
-#+title: IF AI Module Notes =V1.5=
+#+title: IF AI Module Notes =V1.5.1=
 ****** [[https://youtu.be/wpV-gGA4PSk][~Qianyi, 2i1. Have fun.]]
 \\
 
@@ -11,10 +11,15 @@
 #+end_quote
 | ~return ...~ | ends function & reports back a value |
 #+begin_src python
+def something():
+    print(1 + 1)
+
 def calc_vector(a, b):  
     c = (a**2+b**2)**0.5
     return c
-    
+
+something()
+# 2
 print(calc_vector(1, 1))
 # 1.4142135623730951
 #+end_src python
@@ -22,13 +27,15 @@ print(calc_vector(1, 1))
 *** /Preset Functions/
 | ~print(objects*)~ | prints out objects|
 | ~angle()~ | returns the current angle in a numerical float^{(1)}, ranges 0 - 359 |
+| ~active()~ ^{(2)} | evaluates whether car has reached end-line |
 | ~set(x, y, angle)~ | |
 | ~go(left, right, time)~ | move/turn/pivot |
 | ~abs(num)~ | returns absolute/positive value |
 | ~round(float)~ | rounds up/down a float^{(1)} |
 
 #+begin_quote
-(1) -- =float= is a numerical value, that has decimal places.
+(1) -- =float= is a numerical value, that has decimal places. \\
+(2) -- only works in Experiment 1-7 and 1-8
 #+end_quote
 
 \\
@@ -108,7 +115,7 @@ while A == True:
 #+begin_src py
 get_ultrasound()[sensor]
 #+end_src
-| *0* ^{(f-left)} | *1* ^{(front)} | *2* ^{(f-right)} |
+| *0* ^{(f-left)} | *2* ^{(front)} | *1* ^{(f-right)} |
 | | *3* ^{(rear)} | |
 - *DIST_{moved} = INIT - END* ^{~sensor 2~}
 - *DIST_{moved} = END - INIT* ^{~sensor 3~}
