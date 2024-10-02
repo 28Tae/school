@@ -1,7 +1,3 @@
-#######################################
-# Mission 1: Date Calculator Template #
-#######################################
-
 # NOTE: For some test-cases, the standard #print() is used
 # For sub-tasks that require more rigorous testing,
 # assert f() == ... is used for validating
