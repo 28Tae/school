@@ -1,4 +1,4 @@
-# `S3'24` - CODE IMPACT
+# S3-S4 HCICP
 > [!NOTE]
 > The main programming language used is `Python 3.10+`.
 
@@ -22,8 +22,8 @@
 +-- A04_Searching_Algorithms
 +
 + 03_Data_Management
-+-- D01_Data_Repr_and_Char_Encoding
-+-- D02_Ralational_Database
++-- D01_Data_Repr_and_Char_Encoding [x]
++-- D02_Relational_Database
 +-- D03_SQLite_with_Python
 +
 + 04_Web_Applications
