@@ -1,6 +1,6 @@
 # `S3'24` - CODE IMPACT
 > [!NOTE]
-> The main programming language used is `Python 3.6+`, integrated with other languages like SQLite, HTML, CSS and Flask.
+> The main programming language used is `Python 3.10+`.
 
 ```
 + 01_Programming_Constructs
