@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Form{% end block %}
+
+{% block main %}
+    <h1>Post a message</h1>
+
+    <!-- Form action to URL, method to POST-->
+    <form action="{{ url_for('result') }}" method="POST">
+        <p>Username:<input type="text" name="username"></p>
+        <p>Email:<input type="email" name="email"></p>
+        <p>Message:</p>
+        <p><textarea name="message" rows="3" cols="50"></textarea></p>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+    <button class="btn" onclick="window.location.href='/'">Back to Home</button>
+{% end block %}

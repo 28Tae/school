@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+}
+h1 {
+    text-align: center;
+}
+table {
+    width: 400px;
+}
+td {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+td form {
+    text-align: right;
+}

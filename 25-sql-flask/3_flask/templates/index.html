@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Index{% end block %}
+
+{% block main %}
+    <h1>Message Board</h1>
+    <table border="1">
+        <!-- If you are feeling lazy -->
+        <tr>
+            {% for i in ["No.", "Username", "Email", "Message", "", ""] %}
+                <th>{{ i }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in data %}
+            <tr>
+                <!-- Loops through -->
+                {% for i in row %}
+                    <td>{{ i }}</td>
+                {% endfor %}
+                <!-- If is a valid row -->
+                {% if row[0] %}
+                    <td>
+                        <!-- Take note for url_for with converter id inside -->
+                        <a href="{{ url_for('update', id=row[0]) }}" class="btn btn-warning">Edit</a>
+                    </td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
