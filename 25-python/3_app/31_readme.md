@@ -1,5 +1,6 @@
 # 3.0 - Flask, Jinja & Web Applications
 <hr>
+
 <sup>[Return Home](../README.md)</sup>
 
 > This is the culmination of the past two years of computing, to develop a Web Application.
