@@ -51,12 +51,12 @@ To replace **booleans**, use INTEGER and restrain the values such that `CHECK(bo
 
 ```python
 -- Creating
-CREATE TABLE blackies (
+CREATE TABLE pets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     price INTEGER DEFAULT 0 CHECK (price >= 0),
     sold INTEGER DEFAULT 0 CHECK (sold IN (0, 1)),
     name TEXT NOT NULL,
-    FOREIGN KEY (id) REFERENCES blackie_audits(id)
+    FOREIGN KEY (id) REFERENCES pet_audits(id)
 );
 ```
 
@@ -65,7 +65,7 @@ CREATE TABLE blackies (
 -- Select
 SELECT col1, col2 FROM t1 [WHERE condition] [ORDER by col DESC];
 
-SELECT Count(*) AS "Blackies", ancestor FROM blackies INNER JOIN blackie_family ON blackies.id = blackie_family.id GROUP BY ancestor WHERE year < 2020;
+SELECT Count(*) AS "Pets", parentName as "Parent Name" FROM pets INNER JOIN pet_family ON pets.id = pet_family.id GROUP BY parentName WHERE year < 2020;
 ```
 
 
