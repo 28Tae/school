@@ -30,6 +30,6 @@ _Feel free to refer to the static files for syntax, especially `templates/`_
 - [Term 3 CT](exercises/T3CT_25S4/) on CSV Reading, Flask and Dropdowns
 
 <blockquote>
-  Jiayous yalls got this gang - Qian Yi
+  Jiayous yalls got this gang - Qian Yi<br>
   Copyright Qian Yi 2025. All notes, unless stated otherwise, are protected under copyright.
 </blockquote>
