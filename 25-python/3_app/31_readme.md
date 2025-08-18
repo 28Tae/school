@@ -1,29 +1,46 @@
-# Flask, Jinja & Python
+# 3.0 - Flask, Jinja & Web Applications
 <hr>
+<sup>[Return Home](../README.md)</sup>
+
+<div class="alert alert-block alert-warning">
+This is the culmination of the past two years of computing, to develop a Flask Web Application.
+</div>
+
+On the **frontend**, you have `templates/FILE.html` as a baseline HTML structure, topped with _static_ CSS styling & JavaScript dynamic content generation.
+
+On the **backend**, you have your SQL database and the `app.py` which runs the entire programme.
 
 
 ```python
 project/
-├── app.py                # Main application to run
+├── app.py                # Main application to EXECUTE
 ├── templates/            # Jinja templates
-│   ├── layout.html       # Base template
+│   ├── layout.html       # Base template for Jinja
 │   └── index.html        # Extended template
-├── static/               # Static files
-│   ├── css/
+├── static/               # Static files (CSS, JavaScript, Images)
+│   ├── style.css 
+│   ├── script.js
 │   └── images/
 └── database.db           # SQLite database
 ```
 
-## **`3.1` - Templates & Dynamic Objects**
+<hr>
+
+## **`3.1` - Dynamic Objects**
+Here are baseline files to run a simple web app.
 
 
 ```python
+# app.py
+
 from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# INSERT OTHER ROUTES
 
 if __name__ == '__main__':
     app.run(debug=True)
@@ -42,9 +59,11 @@ if __name__ == '__main__':
     {% block main %}{% end block %}
 </body>
 </html>
+```
 
 
-<!-- static/css.html-->
+```python
+/* style.css */
 h1 {
     color: blue;
     font-size: 24px;
@@ -52,8 +71,10 @@ h1 {
 .class {
     padding: 10px;
 }
+```
 
 
+```python
 <!-- templates/index.html -->
 {% extends "base.html" %}
 
@@ -83,12 +104,12 @@ h1 {
 {% endblock %}
 ```
 
-**Jinja Syntax**
+### **3.1.1** - Jinja Syntax
 - `{{ ... }}` inserts variables <br>
 - `{% ... %}` refer to conditionals and logic
 <br>
 
-| Thing | Syntax | Use |
+| Item | Syntax | ? |
 | --- | --- | --- |
 | Extension | `{% extends 'base.html' %}` |	Base template structure |
 | Blocks | `{% block content %}...{% endblock %}` | Replaceable sections |
@@ -100,10 +121,11 @@ h1 {
 | **Random** | `{{ range(9)\|random }}` | Selects random |
 | **URL Generate** | __`{{url_for('profile')}}`__ | Dynamic links |
 
-### 3.1.1 - Converters
-`<type: var>`<br>
-Accepts _int, float, or s (default)_ as "type"<br>
-Must be reflected in the `def()` function itself
+### **3.1.2** - URL Building
+
+You can build dynamic URLs by using **converters**.<br>
+This dumps integers/floats/strings in the URL to be processed in the route.<br>
+The format of a custom converter is **`<type: var>`** where type is either `int`, `float`, or `str` (default).
 
 
 ```python
@@ -121,7 +143,7 @@ def converter(page=1):
 # /conv/ee   throws error
 ```
 
-### 3.1.2 - `url_for()` and `redirect()`
+To build a URL for a specific object, you can dynamically find routes/static files through `url_for(...)`.
 
 **In Python**, you normally want to just `return redirect(url_for('index'))`
 
@@ -138,12 +160,15 @@ def converter(page=1):
 </form>
 ```
 
-# **`3.2` - GET, POST and SQLITE3**
-<code>GET</code> is the default method, in which data is _downloaded_ from the server to you in a non-private way<br>
+<hr>
+
+# **`3.2` - GET, POST and SQL**
+<code>GET</code> is the default method, in which data is _downloaded_ from the server to you in a non-private way
+
 <code>POST</code> is where you _submit_ data and make _server-side changes_, which is more private due to the form nature
 Remember, `from flask import request`
 
-### 3.2.1 - Form by GET method
+### **3.2.1** - Form by GET Method
 > Data is sent in the URL query string `/search?query=input`<br>
 > Do note you use **`request.args.get('...')`** here
 
@@ -181,7 +206,7 @@ def get_result():
 
 ```
 
-### 3.2.2 - Form by POST Method
+### **3.2.2** - Form by POST Method
 > Explicitly mention the `method = "POST"` in Jinja<br>
 > Include `methods = ['GET', 'POST']` within the _route decorator_<br>
 > Use `request.form[arg]` as though it's a _list_
@@ -230,7 +255,7 @@ def post_result():
     return redirect(url_for('success'))
 ```
 
-### 3.3.3 - CRUD Integration
+### **3.3.3** - CRUD Integration
 
 
 ```python

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}STORE{% endblock %}
+
+{% block main %}
+    <h1>Student Appreciation Page</h1>
+    <p>Store Appreciated: <em>{{ store }}</em></p>
+    <table>
+        <tr>
+            <th>Level</th>
+            <th>Class</th>
+            <th>Name</th>
+        </tr>
+        <tr>
+            <td>Sec 3 Representative</td>
+            <td>{{ s3[0] }}</td>
+            <td>{{ s3[1] }}</td>
+        </tr>
+        <tr>
+            <td>Sec 4 Representative</td>
+            <td>{{ s4[0] }}</td>
+            <td>{{ s4[1] }}</td>
+        </tr>
+    </table>
+{% endblock %}

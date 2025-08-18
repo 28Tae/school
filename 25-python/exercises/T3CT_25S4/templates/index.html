@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}INDEX{% endblock %}
+
+{% block main %}
+    <h1>Welcome to My Class!</h1>
+    <!-- Class form-->
+    <form action="{{ url_for('form') }}" method="post">
+        <p>Submit Class: <input type="text" name="cls" placeholder="???" required></p>
+        <input type="submit" value="It's time to fortune tell">
+    </form>
+    <hr>
+    <h1>Welcome to Store Appreciation!</h1>
+    <!-- Appreciation-->
+    <form action="{{ url_for('thanks')}}" method="post">
+        <p>Store:
+            <select name="store">
+                {% for store in stores %}
+                    <option value="{{ store }}">{{ store }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <input type="submit" value="Pick this store!">
+    </form>
+{% endblock %}
