@@ -2,9 +2,7 @@
 <hr>
 <sup>[Return Home](../README.md)</sup>
 
-<div class="alert alert-block alert-warning">
-This is the culmination of the past two years of computing, to develop a Flask Web Application.
-</div>
+> This is the culmination of the past two years of computing, to develop a Flask Web Application.
 
 On the **frontend**, you have `templates/FILE.html` as a baseline HTML structure, topped with _static_ CSS styling & JavaScript dynamic content generation.
 
