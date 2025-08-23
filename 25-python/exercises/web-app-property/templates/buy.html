@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Successful - Property Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Purchase Complete!</h1>
+            <p>Transaction has been successfully processed</p>
+        </div>
+        
+        <div class="success-container">
+            <div class="success-header">
+                <div class="checkmark">✅</div>
+                <h2>Property Successfully Purchased</h2>
+                <p>All details have been updated in the system</p>
+            </div>
+
+            <!-- Buyer Information Section -->
+            <div class="info-section">
+                <h3 class="section-title">👤 Buyer Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Buyer ID</div>
+                        <div class="info-value">{{ buyer.UserID }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-value">{{ buyer.Name }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Contact Number</div>
+                        <div class="info-value">{{ buyer.Contact }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Email Address</div>
+                        <div class="info-value">{{ buyer.Email }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Information Section -->
+            <div class="info-section">
+                <h3 class="section-title">🏠 Property Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Record ID</div>
+                        <div class="info-value">{{ property_info.RecordID }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Property ID</div>
+                        <div class="info-value">{{ property_info.PropertyID }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Address</div>
+                        <div class="info-value">{{ property_info.Address }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Postal Code</div>
+                        <div class="info-value">{{ property_info.Postal }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Total Area</div>
+                        <div class="info-value">{{ property_info.TotalArea }} sq m</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Bedrooms</div>
+                        <div class="info-value">{{ property_info.NoOfBedroom }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Toilets</div>
+                        <div class="info-value">{{ property_info.NoOfToilet }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Original Asking Price</div>
+                        <div class="info-value price">${{ "{:,.2f}".format(property_info.AskingPrice) }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Final Sold Price</div>
+                        <div class="info-value price">${{ "{:,.2f}".format(property_info.SoldPrice) }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Sale Date</div>
+                        <div class="info-value">{{ property_info.SoldDate }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Property Status</div>
+                        <div class="info-value">{{ "Sold" if property_info.Status == "True" else "Available" }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Date Listed</div>
+                        <div class="info-value">{{ property_info.DateListed }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seller Information Section -->
+            <div class="info-section">
+                <h3 class="section-title">🤝 Seller Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Seller ID</div>
+                        <div class="info-value">{{ property_info.SellerID }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Seller Name</div>
+                        <div class="info-value">{{ property_info.SellerName }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Seller Contact</div>
+                        <div class="info-value">{{ property_info.SellerContact }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Seller Email</div>
+                        <div class="info-value">{{ property_info.SellerEmail }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="{{ url_for('index') }}" class="btn back-btn">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
