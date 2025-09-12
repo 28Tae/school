@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Added Entry</title>
+</head>
+<body>
+    <h1>Confirmed Entry Submission!</h1>
+    <!-- You can use <p> or a disabled <form> --> 
+    <form>
+        <p>
+            Player Name:
+            <input type="text" value="{{ player_name }}" autocomplete="off" disabled>
+        </p>
+        <p>
+            Gender:
+            <input type="text" value="{{ gender }}" autocomplete="off" disabled>
+        </p>
+        <p>
+            Game Name:
+            <input type="text" value="{{ game_name }}" autocomplete="off" disabled>
+        </p>
+        <p>
+            Score:
+            <input type="number" value="{{ score }}" autocomplete="off" disabled>
+        </p>
+        <p>
+            Timestamp:
+            <input type="text" value="{{ timestamp }}" autocomplete="off" disabled>
+        </p>
+    </form>
+</body>
+</html>

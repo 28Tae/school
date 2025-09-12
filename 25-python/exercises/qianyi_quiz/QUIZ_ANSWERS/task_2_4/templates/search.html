@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+<body>
+    <h1>Search a Game!</h1>
+    <form action="{{ url_for('search') }}" method="post">
+        <select name="game">
+            {% for game in games %}
+            <option value="{{ game[0] }}">{{ game[0] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit your game</button>
+    </form>
+</body>
+</html>

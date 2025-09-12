@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+</head>
+<body>
+    <h1>Add your entry</h1>
+    {# If there is an error, this will be activated #}
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('add') }}" method="post">
+        <p>
+            Game:
+            <select name="game_name">
+                {% for game in games %}
+                <option value="{{ game[0] }}">{{ game[0] }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            Player ID:
+            <select name="player_id">
+                {% for id in ids %}
+                <option value="{{ id[0] }}">{{ id[0] }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            Score:
+            <input type="number" name="score" autocomplete="off" placeholder="A beautiful score" required>
+        </p>
+        <button type="submit">Add entry</button>
+    </form>
+</body>
+</html>

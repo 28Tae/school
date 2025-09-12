@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results for <code>{{ game }}</code></h1>
+    <table>
+        <tr>
+            {% for i in ['Name', 'Handphone Number', 'Gender', 'Entry Timestamp', 'Score Percentage'] %}
+            <th>{{ i }}</th>
+            {% endfor %}
+        </tr>
+        {% for i in data %}
+        <tr>
+            {% for j in i %}
+            <td>{{ j }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
