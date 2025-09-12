@@ -26,6 +26,7 @@
 _Feel free to refer to the static files for syntax, especially `templates/`_
 
 ## Other Exercises
+- [**S4 MOCK PAPER**](exercises/qianyi_quiz/) (Download the whole folder!)
 - [OOP Exercises](exercises/0_missions/)
 - [Term 3 CT](exercises/T3CT_25S4/) on CSV Reading, Flask and Dropdowns
 
