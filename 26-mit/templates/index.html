@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MIT 26S6G - Blackjack 16</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="crest">16</div>
+      <div>
+        <h1>MIT 26S6G - Blackjack 16</h1>
+        <p class="subtitle">Draw from a 32-card deck, chase the highest score up to 16, and let expected value decide whether to hit or stand.</p>
+      </div>
+    </header>
+
+    <main class="grid-layout" id="mainGrid">
+      <section class="panel table-panel">
+        <div class="panel-title-row">
+          <div>
+            <p class="eyebrow">Current Hand</p>
+            <h2>Your face-up cards</h2>
+          </div>
+          <button type="button" class="btn ghost toggle-engine" id="toggleEngine">Hide EV Engine</button>
+        </div>
+
+        {% if hand %}
+        <div class="card-row">
+          {% for card in hand %}
+          <div class="flip-card {{ card.color_class }}">
+            <span class="corner tl">{{ card.corner }}</span>
+            <span class="corner tr">{{ card.corner }}</span>
+            <span class="card-face">{{ card.label }}</span>
+            <span class="corner bl">{{ card.corner }}</span>
+            <span class="corner br">{{ card.corner }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-hand">Deal two cards or manually add cards to begin.</div>
+        {% endif %}
+
+        <div class="score-board">
+          <div>
+            <span class="label">Best total</span>
+            <strong class="score {% if bust %}danger{% endif %}">{{ total }}</strong>
+          </div>
+          <div>
+            <span class="label">Ace-adjusted totals</span>
+            <strong>{{ possible_totals | join(', ') }}</strong>
+          </div>
+          <div>
+            <span class="label">Cards left</span>
+            <strong>{{ cards_left }}</strong>
+          </div>
+        </div>
+
+        <div class="status-line {% if bust %}danger-text{% endif %}">{{ status }}</div>
+
+        <form method="post" class="button-row">
+          <button name="action" value="deal" class="btn primary">Deal 2 Cards</button>
+          <button name="action" value="hit" class="btn" {% if finished or not hand %}disabled{% endif %}>Hit</button>
+          <button name="action" value="stand" class="btn" {% if finished or not hand %}disabled{% endif %}>Stand</button>
+          <button name="action" value="reset" class="btn ghost">Reset</button>
+        </form>
+      </section>
+
+      <section class="panel decision-panel">
+        <p class="eyebrow">Expected Value Engine</p>
+        <h2>Recommendation</h2>
+        <div class="recommendation {{ 'hit' if recommendation == 'Hit' else 'stand' }}">{{ recommendation }}</div>
+        <p class="threshold">{{ threshold_text }}</p>
+
+        <div class="metric-grid">
+          <div class="metric">
+            <span>EV if standing</span>
+            <strong>{{ stand_ev | ev }}</strong>
+          </div>
+          <div class="metric">
+            <span>EV if hitting</span>
+            <strong>{{ hit_ev | ev }}</strong>
+          </div>
+          <div class="metric">
+            <span>Hit advantage</span>
+            <strong class="{{ 'positive' if hit_edge > 0 else 'negative' }}">{{ hit_edge | ev }}</strong>
+          </div>
+          <div class="metric">
+            <span>One-hit bust odds</span>
+            <strong>{{ stats.bust_prob | pct }}</strong>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <p>The app compares standing against the expected payoff from hitting.</p>
+          <code>EV(hit) = Σ P(card) × V(new state)</code>
+          <code>V(state) = max(stand payoff, hit EV)</code>
+        </div>
+      </section>
+
+      <section class="panel wide-panel">
+        <div class="panel-title-row">
+          <div>
+            <p class="eyebrow">One-hit Calculation</p>
+            <h2>What happens if you draw one more card?</h2>
+          </div>
+          <span class="badge">Safe {{ stats.safe_prob | pct }}</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th>Remaining</th>
+                <th>Probability</th>
+                <th>New total</th>
+                <th>Payoff</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in stats.rows %}
+              <tr>
+                <td><span class="mini-card {{ row.color_class }}">{{ row.card }}</span></td>
+                <td>{{ row.count }}</td>
+                <td>{{ row.prob | pct }}</td>
+                <td>{{ row.new_total }}</td>
+                <td>{{ row.payoff }}</td>
+                <td class="{{ 'danger-text' if row.bust else 'safe-text' }}">{{ 'Bust' if row.bust else 'Safe' }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel wide-panel manual-panel">
+        <div>
+          <p class="eyebrow">Manual Testing</p>
+          <h2>Add a specific card</h2>
+          <p class="note">Use this to test custom states from the report. Each card is removed from the deck, so the app calculates without replacement.</p>
+        </div>
+        <form method="post" class="manual-grid">
+          <input type="hidden" name="action" value="add_card">
+          {% for card in card_options %}
+          <button class="manual-card {{ card.color_class }}" name="card" value="{{ card.label }}" {% if finished or remaining[card.label] == 0 %}disabled{% endif %}>
+            <span>{{ card.label }}</span>
+            <small>{{ remaining[card.label] }} left</small>
+          </button>
+          {% endfor %}
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const mainGrid = document.getElementById('mainGrid');
+    const toggleEngine = document.getElementById('toggleEngine');
+    const savedEngineState = localStorage.getItem('blackjack16-hide-ev');
+
+    function setEngineVisibility(hidden) {
+      mainGrid.classList.toggle('ev-hidden', hidden);
+      toggleEngine.textContent = hidden ? 'Show EV Engine' : 'Hide EV Engine';
+      localStorage.setItem('blackjack16-hide-ev', hidden ? '1' : '0');
+    }
+
+    setEngineVisibility(savedEngineState === '1');
+
+    toggleEngine.addEventListener('click', () => {
+      setEngineVisibility(!mainGrid.classList.contains('ev-hidden'));
+    });
+  </script>
+</body>
+</html>
